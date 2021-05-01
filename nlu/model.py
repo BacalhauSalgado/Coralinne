@@ -24,5 +24,18 @@ for input in inputs + outputs:
             chars.add(ch)
 
 
+max_sqe = max([len(x) for x in inputs])
+
 
 print('Número de chars: ',len(chars))
+print('Maior sequencia: ',max_sqe)
+
+# Mapear char-idx
+
+chr2idx = {}
+idx2chr = {}
+
+for i, ch in enumerate(chars):
+    chr2idx[ch] = i
+    idx2chr[i] = ch
+
