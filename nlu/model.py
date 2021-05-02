@@ -24,12 +24,6 @@ for input in inputs + outputs:
             chars.add(ch)
 
 
-max_sqe = max([len(x) for x in inputs])
-
-
-print('Número de chars: ',len(chars))
-print('Maior sequencia: ',max_sqe)
-
 # Mapear char-idx
 
 chr2idx = {}
@@ -38,4 +32,21 @@ idx2chr = {}
 for i, ch in enumerate(chars):
     chr2idx[ch] = i
     idx2chr[i] = ch
+
+
+max_sqe = max([len(x) for x in inputs])
+
+print('Número de chars: ',len(chars))
+print('Maior sequencia: ',max_sqe)
+
+# Criar o dataset one-rot (números de exemplos, tamanho da sequencia, número de caracteres)
+input_data = np.zeros((len(inputs), max_sqe, len(chars)), dtype='int32')
+
+for i, input in enumerate(inputs):
+    for k, ch in enumerate(input):
+        input_data[i, k, chr2idx[ch]] = 1.0
+
+
+print(input_data[0])
+
 
