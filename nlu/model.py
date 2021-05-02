@@ -67,4 +67,9 @@ for i, input in enumerate(inputs):
 
 print(output_data[0])
 
-
+model = Sequential()
+model.add(Embedding(len(chars), 128))
+model.add(LSTM(128))
+model.add(Dense(len(output_data),activation='softmax'))
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
+model.summary()
