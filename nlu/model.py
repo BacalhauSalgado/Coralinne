@@ -42,11 +42,29 @@ print('Maior sequencia: ',max_sqe)
 # Criar o dataset one-rot (números de exemplos, tamanho da sequencia, número de caracteres)
 input_data = np.zeros((len(inputs), max_sqe, len(chars)), dtype='int32')
 
+# Criar labels para o classificador
+
+labels = set(outputs)
+
+label2idx = {}
+idx2label = {}
+
+for k, label in enumerate(labels):
+    label2idx[label] = k
+    idx2label[k] = labels
+
+output_data = []
+
+for output in outputs:
+    output_data.append(label2idx[output])
+
+output_data = to_categorical(outputs, len(outputs))
+
 for i, input in enumerate(inputs):
     for k, ch in enumerate(input):
         input_data[i, k, chr2idx[ch]] = 1.0
 
 
-print(input_data[0])
+print(output_data[0])
 
 
