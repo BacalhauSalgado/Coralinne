@@ -58,7 +58,7 @@ output_data = []
 for output in outputs:
     output_data.append(label2idx[output])
 
-output_data = to_categorical(outputs, len(outputs))
+output_data = to_categorical(output_data, len(output_data))
 
 for i, input in enumerate(inputs):
     for k, ch in enumerate(input):
